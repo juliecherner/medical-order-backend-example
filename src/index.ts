@@ -23,9 +23,11 @@ app.get("/", function (req, res) {
   res.send("Welcome to mini-API for medical orders");
 });
 
-app.use((req: Request, res: Response, next) => {
+app.use((req: Request, res: Response) => {
   res.status(404).send("Page Not Found");
+});
 
+app.use((req: Request, res: Response, next) => {
   if (!req.secure) {
     return res.redirect(["https://", req.get("Host"), req.url].join(""));
   }
@@ -35,7 +37,7 @@ app.use((req: Request, res: Response, next) => {
 const port = process.env.APP_PORT || 8080;
 const httpsServerPort = process.env.HTTPS_SERVER_PORT || 80;
 
-https.createServer(app).listen(httpsServerPort, () => {
+https.createServer({}, app).listen(httpsServerPort, () => {
   console.log("HTTP server started on port 80");
 });
 
