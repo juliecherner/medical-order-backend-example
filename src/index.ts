@@ -41,6 +41,6 @@ https.createServer({}, app).listen(httpsServerPort, () => {
   console.log("HTTP server started on port 80");
 });
 
-http.createServer(app).listen(port, () => {
-  console.log("HTTPS server started on port 8080");
-});
+// http.createServer(app).listen(port, () => {
+//   console.log("HTTPS server started on port 8080");
+// });
