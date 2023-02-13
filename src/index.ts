@@ -1,8 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import path from "path";
 import { config } from "dotenv";
-
+import https from "https";
 import { corsConfig } from "../corsConfig";
 import { connectDb } from "./database";
 import router from "./routes";
@@ -23,6 +22,9 @@ app.use((req: Request, res: Response) => {
   res.status(404).send("Page Not Found");
 });
 
-app.listen(process.env.APP_PORT || 8080, () => {
-  console.log(`server is on port`);
+const server = https.createServer(app);
+const port = process.env.PORT || 8080;
+
+server.listen(port, () => {
+  console.log(`server is running on port`);
 });
