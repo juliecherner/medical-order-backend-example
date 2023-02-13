@@ -1,8 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import { config } from "dotenv";
-import https from "https";
-import http from "http";
 import { corsConfig } from "../corsConfig";
 import { connectDb } from "./database";
 import router from "./routes";
@@ -23,24 +21,12 @@ app.get("/", function (req, res) {
   res.send("Welcome to mini-API for medical orders");
 });
 
-// app.use((req: Request, res: Response) => {
-//   res.status(404).send("Page Not Found");
-// });
-
-app.use((req: Request, res: Response, next) => {
-  if (!req.secure) {
-    return res.redirect(["https://", req.get("Host"), req.url].join(""));
-  }
-  next();
+app.use((req: Request, res: Response) => {
+  res.status(404).send("Page Not Found");
 });
 
-const port = process.env.APP_PORT || 8080;
-const httpsServerPort = process.env.HTTPS_SERVER_PORT || 80;
+const port = process.env.PORT || 3000;
 
-https.createServer({}, app).listen(httpsServerPort, () => {
-  console.log("HTTP server started on port 80");
-});
-
-http.createServer(app).listen(port, () => {
+app.listen(port, () => {
   console.log("HTTPS server started on port 8080");
 });
