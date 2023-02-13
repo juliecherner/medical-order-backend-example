@@ -25,6 +25,6 @@ app.use((req: Request, res: Response) => {
 const server = https.createServer(app);
 const port = process.env.PORT || 8080;
 
-server.listen(port, () => {
-  console.log(`server is running on port`);
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });
