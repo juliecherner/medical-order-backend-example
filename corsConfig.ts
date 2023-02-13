@@ -3,6 +3,7 @@ export const corsConfig = {
     "http://localhost:4200",
     "https://angular-medical-form.vercel.app",
     "https://angular-medical-form-hn4mtod3n-juliecherner.vercel.app",
+    "https://angular-medical-form-hn4mtod3n-juliecherner.vercel.app",
   ],
   methods: ["GET", "PATCH", "PUT", "POST", "DELETE", "OPTIONS"],
 };
